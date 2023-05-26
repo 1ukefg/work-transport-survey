@@ -22,7 +22,7 @@ def get_employee_name():
     print("An example entry could be: Tom Jerry\n")
 
     input_string = input("Enter your name below:\n")
-    print(f"You entered {input_string}")
+    print(f"Your name: {input_string}")
 
 def get_transport_method():
     """
@@ -32,8 +32,19 @@ def get_transport_method():
     print("For example, if you cycle 0.4 miles to a train station and then take a train for 3 miles, your answer would be Train.\n")
 
     input_string = input("Enter your mode of transport below:\n")
-    print(f"You entered {input_string}")
+    print(f"Your main mode of transport: {input_string}")
 
+def get_travel_distance():
+    """
+    Retrieve the total distance travelled to work in miles.
+    """
+    print("Please provide us with the total distance you travel to work (in miles).")
+    print("When entering your answer, please do not include the units")
+    print("Example answer: 1.4\n")
+    
+    input_string = input("Enter the distance you travel below:\n")
+    print(f"The distance you travel: {input_string} miles.")
 
 get_employee_name()
 get_transport_method()
+get_travel_distance()
