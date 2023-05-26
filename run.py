@@ -24,4 +24,16 @@ def get_employee_name():
     input_string = input("Enter your name below:\n")
     print(f"You entered {input_string}")
 
+def get_transport_method():
+    """
+    Retrieve the mode of transport the user takes to travel to work.
+    """
+    print("Please provide us with your main mode of transport to work.")
+    print("For example, if you cycle 0.4 miles to a train station and then take a train for 3 miles, your answer would be Train.\n")
+
+    input_string = input("Enter your mode of transport below:\n")
+    print(f"You entered {input_string}")
+
+
 get_employee_name()
+get_transport_method()
