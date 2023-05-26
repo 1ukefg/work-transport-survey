@@ -24,6 +24,18 @@ def get_employee_name():
     input_string = input("Enter your name below:\n")
     print(f"Your name: {input_string}")
 
+    transport = get_transport_method()
+    distance = get_travel_distance()
+
+    data = {
+        'name': input_string,
+        'transport': transport,
+        'distance': distance
+    }
+
+    update_worksheet(data)
+
+
 def get_transport_method():
     """
     Retrieve the mode of transport the user takes to travel to work.
@@ -33,6 +45,8 @@ def get_transport_method():
 
     input_string = input("Enter your mode of transport below:\n")
     print(f"Your main mode of transport: {input_string}")
+    return input_string
+
 
 def get_travel_distance():
     """
@@ -46,14 +60,34 @@ def get_travel_distance():
     print(f"The distance you travel: {distance} miles.")
     return distance
 
+
 def validate_travel_distance():
     while True:
-        input_string = input_string = input("Enter the distance you travel below:\n")
+        input_string = input_string = input(
+            "Enter the distance you travel below:\n")
         try:
             distance = float(input_string)
             return distance
         except ValueError:
             print("Invalid input. Please enter a valid ditance (numbers only)")
+
+
+def update_worksheet(data):
+    """
+    Update the spreadsheet with the provided data.
+    """
+    sheet = SHEET.worksheet("methods")
+
+    name = data['name']
+    transport = data['transport']
+    distance = data['distance']
+
+    next_row = len(sheet.get_all_values()) + 1
+
+    sheet.update(f"A{next_row}", name)
+    sheet.update(f"B{next_row}", transport)
+    sheet.update(f"C{next_row}", distance)
+
 
 get_employee_name()
 get_transport_method()
