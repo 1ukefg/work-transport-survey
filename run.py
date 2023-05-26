@@ -36,14 +36,24 @@ def get_transport_method():
 
 def get_travel_distance():
     """
-    Retrieve the total distance travelled to work in miles.
+    Retrieve the total distance traveled to work in miles.
     """
     print("Please provide us with the total distance you travel to work (in miles).")
-    print("When entering your answer, please do not include the units")
+    print("When entering your answer, please do not include the units.")
     print("Example answer: 1.4\n")
-    
-    input_string = input("Enter the distance you travel below:\n")
-    print(f"The distance you travel: {input_string} miles.")
+
+    distance = validate_travel_distance()
+    print(f"The distance you travel: {distance} miles.")
+    return distance
+
+def validate_travel_distance():
+    while True:
+        input_string = input_string = input("Enter the distance you travel below:\n")
+        try:
+            distance = float(input_string)
+            return distance
+        except ValueError:
+            print("Invalid input. Please enter a valid ditance (numbers only)")
 
 get_employee_name()
 get_transport_method()
