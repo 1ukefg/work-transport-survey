@@ -64,6 +64,9 @@ def get_travel_distance():
 
 
 def validate_travel_distance():
+    """
+    Ensures that only numbers are entered as an answer for the final question
+    """
     while True:
         input_string = input(
             "Enter the distance you travel below:\n")
