@@ -91,6 +91,7 @@ def update_worksheet(data):
     sheet.update(f"B{next_row}", transport)
     sheet.update(f"C{next_row}", distance)
 
+
 def calculate_average_distance():
     """
     Calculates the average distance travelled to work for all participants
@@ -104,6 +105,7 @@ def calculate_average_distance():
 
     average_sheet = SHEET.worksheet("average")
     average_sheet.update("B2", avg_distance)
+
 
 def calculate_total_participants():
     """
@@ -121,10 +123,13 @@ def calculate_total_participants():
     run_count_cell.value = str(run_count)
     average_sheet.update_cells([run_count_cell])
 
+
 def main():
     """
     Run all functions
     """
     get_employee_name()
 
+
 main()
+print("All questions have been answered. Have a great day!")
