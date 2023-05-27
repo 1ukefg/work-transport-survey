@@ -34,6 +34,8 @@ def get_employee_name():
     }
 
     update_worksheet(data)
+    calculate_average_distance()
+    calculate_total_participants()
 
 
 def get_transport_method():
@@ -103,13 +105,26 @@ def calculate_average_distance():
     average_sheet = SHEET.worksheet("average")
     average_sheet.update("B2", avg_distance)
 
-    print(avg_distance)
+def calculate_total_participants():
+    """
+    Calculates the number of times that the survey has been completed
+    """
+    average_sheet = SHEET.worksheet("average")
+    run_count_cell = average_sheet.acell("A2")
+    run_count = run_count_cell.value
+
+    if run_count:
+        run_count = int(run_count) + 1
+    else:
+        run_count = 1
+
+    run_count_cell.value = str(run_count)
+    average_sheet.update_cells([run_count_cell])
 
 def main():
     """
     Run all functions
     """
     get_employee_name()
-    calculate_average_distance()
 
 main()
