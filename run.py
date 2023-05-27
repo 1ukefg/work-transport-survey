@@ -63,18 +63,19 @@ def get_travel_distance():
 
 def validate_travel_distance():
     while True:
-        input_string = input_string = input(
+        input_string = input(
             "Enter the distance you travel below:\n")
         try:
             distance = float(input_string)
             return distance
         except ValueError:
-            print("Invalid input. Please enter a valid ditance (numbers only)")
+            print("Invalid input. Please enter a valid distance (numbers only)")
 
 
 def update_worksheet(data):
     """
     Update the spreadsheet with the provided data.
+    Calculates the average distance travelled to work for all participants
     """
     sheet = SHEET.worksheet("methods")
 
@@ -88,7 +89,27 @@ def update_worksheet(data):
     sheet.update(f"B{next_row}", transport)
     sheet.update(f"C{next_row}", distance)
 
+def calculate_average_distance():
+    """
+    Calculates the average distance travelled to work for all participants
+    """
+    sheet = SHEET.worksheet("methods")
 
-get_employee_name()
-get_transport_method()
-get_travel_distance()
+    distances = sheet.col_values(3)[1:]
+
+    total_distance = sum(float(distance) for distance in distances)
+    avg_distance = total_distance / len(distances)
+
+    average_sheet = SHEET.worksheet("average")
+    average_sheet.update("B2", avg_distance)
+
+    print(avg_distance)
+
+def main():
+    """
+    Run all functions
+    """
+    get_employee_name()
+    calculate_average_distance()
+
+main()
