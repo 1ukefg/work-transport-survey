@@ -45,6 +45,7 @@ The program also calculates the average distance traveled by all participants an
 - I tested that when an invalid entry is submitted on the third question that the program returns an error, explanation and asks for the answer to be submitted again.
 - As far as the first and second question are concerned, I did not create any rules to say that number or symbols cannot be used. This is because the data that is entered is not involved in any sort of calculation and is still valid. If for example when asked to provide your main mode of transport, the user enters BMW M5, the person reviewing the data will be able to tell that they travel by car.
 - I have tested and confirmed that the code works as intended in the Code Institute Heroku terminal.
+- No errors where returned when checking my code on pyhtonchecker.com 
 
 ## Deployment
 This project was deployed using Code Institute's mock terminal for Heroku
