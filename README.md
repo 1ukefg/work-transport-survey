@@ -44,4 +44,21 @@ The program also calculates the average distance traveled by all participants an
 - I also faced an issue with the calculate_total_participants() function where the expected value was not being displayed on the worksheet. This was because the function was not expecting the cell on the worksheet to be empty and was fixed by updating the code so that it checks if the value of the "A2" cell is None before converting it to an integer. Additionally, after updating the run_count value, it converts it back to a string and updates the cell in the "average" worksheet.
 - I tested that when an invalid entry is submitted on the third question that the program returns an error, explanation and asks for the answer to be submitted again.
 - As far as the first and second question are concerned, I did not create any rules to say that number or symbols cannot be used. This is because the data that is entered is not involved in any sort of calculation and is still valid. If for example when asked to provide your main mode of transport, the user enters BMW M5, the person reviewing the data will be able to tell that they travel by car.
+- I have tested and confirmed that the code works as intended in the Code Institute Heroku terminal.
 
+## Deployment
+This project was deployed using Code Institute's mock terminal for Heroku
+-Steps for delpoyment:
+    - Fork or clone this repository
+    - Create a new Heroku app
+    - Set the buildbacks to Pyhton and NodeJS in this order
+    - Link the Heroku app to the repository
+    - Click Deploy
+
+## Credits
+
+- Lines 1 - 13 of the code in the run.py file where heavily inspired by the Love Sandwiches essentials project provided by The Code Institue learing material.
+- Code institue for the deployment terminal
+
+## Link to worksheet
+- Here is a link to the worksheet where the data is stored: https://docs.google.com/spreadsheets/d/1mwcvVwqqPWcnyQWeXtNNBYJB2Z9f3CAHiIwDPmlQIDM/edit?usp=sharing
