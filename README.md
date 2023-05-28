@@ -1,32 +1,47 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Work Transport Survey
 
-Welcome,
+This program collects information about employees' mode of transport and distance traveled to work. It updates a Google Spreadsheet with the survey responses and calculates the average distance traveled by all participants.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+## Description
 
-## Reminders
+The Work Transport Survey is a Python program that uses the gspread library and Google Sheets API to collect employee data and perform calculations. It prompts users to enter their name, main mode of transport to work, and total distance traveled in miles. The collected data is then stored in a Google Spreadsheet.
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+The program also calculates the average distance traveled by all participants and updates the average distance in the spreadsheet.
 
-## Creating the Heroku app
+## Features
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+### Introduction
 
-1. `heroku/python`
-2. `heroku/nodejs`
+- The survey starts with an line of text introducing the user to the survey.
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+### Questions
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+- Each of the questions follow the same structure:
+    - The question itself
+    - An example of what your answer needs to contain and what not to do, with an example entry being printed
+    - A line of text asking the user to enter their answer in the line below.
+    - Once the answer has been submitted, a line of text realting to the question is printed followed by their entry so that you can see in real time the data that you are entering.
 
-Connect your GitHub repository and deploy as normal.
+- With the use of a uniform structure throughout the survey, it is easy for the user to follow along and not get lost in the data that has previously been entered. The questions are each posted and then asnwered one at a time to further aid the ease of use of the program.
 
-## Constraints
+### Data Validation
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+- When the user enters a value for the question reagrding travel distance, the program is designed not to accept an answer unless it is an integer. For example, is the user where to enter '1.3 miles@', this will return a value error as it is specified that the use of letters and symbols is not accepted within the answer for this question. The text returned by entering the example entry is as follows: 'Invalid input. Please enter a valid distance (numbers only)'
+- The reasoning for this exemption is prevent the data that is pushed to the spreadsheet from being inconsistent and causing and potential issues with the rest of the spreadsheet.
 
----
+### Data Sums
 
-Happy coding!
+- Once the data has been collected and pushed to the 'methods' worksheet, thr program will then calculate the average distance that is travelled based on the number of entries that have been received. All of the distances are added toghether and then divided by the total number of entries to give this value. This calculation is called upon each time the survey is completed and uploads this value to the 'average' worksheet.
+- The number of times that survey is completed is also added to the same 'average' worksheet, so that the persons who review the data can get a better idea and understanding of the average value that they are presented with.
+
+### Final Statement
+
+- After all of the survey questions have been answered and the calculations are uplaoded, a line of text appears to notify the user that the survey is complete and they can carry on going about their day. The program will not continue to run once all questions are answered.
+
+## Testing
+
+- When testing this program, I initialy encountered an issue where there was not a lines space between where the question details and the entry text was displayed. I fixed this by adding '\n' within the last print statement and the following input string.
+- I also faced an issue with the calculate_total_participants() function where the expected value was not being displayed on the worksheet. This was because the function was not expecting the cell on the worksheet to be empty and was fixed by updating the code so that it checks if the value of the "A2" cell is None before converting it to an integer. Additionally, after updating the run_count value, it converts it back to a string and updates the cell in the "average" worksheet.
+- I tested that when an invalid entry is submitted on the third question that the program returns an error, explanation and asks for the answer to be submitted again.
+- As far as the first and second question are concerned, I did not create any rules to say that number or symbols cannot be used. This is because the data that is entered is not involved in any sort of calculation and is still valid. If for example when asked to provide your main mode of transport, the user enters BMW M5, the person reviewing the data will be able to tell that they travel by car.
+
